@@ -1,6 +1,7 @@
 package com.defense.notecase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ public class HelpLineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_line);
+
         avatar = findViewById(R.id.avataru);
         directory = findViewById(R.id.directory);
         scan = findViewById(R.id.scan_active);

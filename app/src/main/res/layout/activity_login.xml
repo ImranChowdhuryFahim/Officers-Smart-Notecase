@@ -8,7 +8,7 @@
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="78dp"
         android:layout_marginStart="85dp"
@@ -28,8 +28,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="93dp"
+        android:layout_width="403dp"
+        android:layout_height="84dp"
         android:background="@color/tb"
         android:fontFamily="@font/segoeuib"
         android:gravity="center_vertical"
@@ -45,7 +45,7 @@
         tools:ignore="RtlCompat" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/baNo"
         android:layout_width="0dp"
         android:layout_height="78dp"
         android:layout_marginStart="85dp"

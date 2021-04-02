@@ -1,6 +1,7 @@
 package com.defense.notecase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ public class UploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
         avatar = findViewById(R.id.avataru);
         directory = findViewById(R.id.directory);
         helpline = findViewById(R.id.helpline);

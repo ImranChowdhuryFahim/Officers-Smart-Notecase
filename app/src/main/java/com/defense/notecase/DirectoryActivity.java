@@ -1,6 +1,7 @@
 package com.defense.notecase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ public class DirectoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directory);
+
         avatar = findViewById(R.id.avatar);
         scan = findViewById(R.id.scan);
         helpline = findViewById(R.id.helpline);
