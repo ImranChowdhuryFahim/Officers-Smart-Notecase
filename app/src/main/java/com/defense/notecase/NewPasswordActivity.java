@@ -30,7 +30,7 @@ public class NewPasswordActivity extends AppCompatActivity {
     private String email,phoneNumber,baNumber,regToken;
     private EditText pass,confirmPass;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference,databaseReference1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class NewPasswordActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
-
+        databaseReference1 = firebaseDatabase.getReference("profiles");
 
 
 
@@ -87,7 +87,7 @@ public class NewPasswordActivity extends AppCompatActivity {
                     databaseReference.child(baNumber).child("phoneNumber").setValue(phoneNumber);
                     databaseReference.child(baNumber).child("email").setValue(email);
                     databaseReference.child(baNumber).child("password").setValue(pass.getText().toString().trim());
-                    firebaseDatabase.getReference("profiles").child(baNumber).child("accountCreated").setValue("true");
+                    databaseReference1.child(baNumber).child("accountCreated").setValue("true");
 
 
                     Toasty.success(NewPasswordActivity.this,"Registration successful.",Toasty.LENGTH_SHORT).show();

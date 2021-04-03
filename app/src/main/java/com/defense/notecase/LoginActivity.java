@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -35,7 +36,11 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ProgressDialog progressDialog;
-
+    private SharedPreferences sharedPref;
+    private boolean flag;
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String IS_LOGGED_IN = "isLoggedIn";
+    public static final String BA_NUMBER = "baNumber";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,9 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
+        sharedPref = getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
+
+        flag = false;
 
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -93,9 +101,15 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(baNo.getText().toString().trim().equals(dataSnapshot1.getKey().toString().trim()))
                             {
+                                flag = true;
 
                                 if(pass.getText().toString().trim().equals(dataSnapshot1.child("password").getValue().toString()))
                                 {
+
+                                    SharedPreferences.Editor editor = sharedPref.edit();
+                                    editor.putBoolean(IS_LOGGED_IN, true);
+                                    editor.putString(BA_NUMBER,baNo.getText().toString().trim());
+                                    editor.apply();
                                     progressDialog.dismiss();
                                     startActivity(new Intent(LoginActivity.this,DirectoryActivity.class));
                                     finish();
@@ -122,6 +136,27 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 break;
                             }
+                        }
+
+                        if(!flag)
+                        {
+                            progressDialog.dismiss();
+                            AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
+                            builder.setCancelable(true);
+                            builder.setIcon(R.drawable.ic_baseline_error_outline_24);
+                            builder.setTitle("Validation Error");
+                            builder.setMessage("Couldn't find the BA number you entered.");
+                            builder.setInverseBackgroundForced(true);
+                            builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            AlertDialog alert=builder.create();
+                            alert.show();
                         }
                     }
                     @Override
@@ -185,9 +220,35 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
+    public void onBackPressed()
+    {
+        exitapp();
+    }
+    private void exitapp() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
+        builder.setCancelable(true);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setTitle("Exit App");
+        builder.setMessage("Are you sure you want to leave the application?");
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                finish();
+
+            }
+        });
+
+        builder.setNegativeButton("No",new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert=builder.create();
+        alert.show();
     }
 
     private void nointernetp() {

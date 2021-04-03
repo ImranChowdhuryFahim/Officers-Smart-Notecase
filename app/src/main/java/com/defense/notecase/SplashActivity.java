@@ -1,18 +1,25 @@
 package com.defense.notecase;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import static com.defense.notecase.LoginActivity.IS_LOGGED_IN;
+import static com.defense.notecase.LoginActivity.SHARED_PREFS;
+
 public class SplashActivity extends AppCompatActivity {
+    private SharedPreferences sharedPref;
+    private Boolean isLoggedIn;
+    private Intent intent;
 
 
     // Notification channel ID.
@@ -26,13 +33,26 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+
+        sharedPref = getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
+        isLoggedIn = sharedPref.getBoolean(IS_LOGGED_IN,false);
+
+
+        if(isLoggedIn)
+        {
+            intent = new Intent(SplashActivity.this,DirectoryActivity.class);
+        }
+        else{
+
+            intent = new Intent(SplashActivity.this,LoginActivity.class);
+        }
         // Create the notification channel.
         createNotificationChannel();
 
         new CountDownTimer(2000, 1000) {
             @Override
             public void onFinish() {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);

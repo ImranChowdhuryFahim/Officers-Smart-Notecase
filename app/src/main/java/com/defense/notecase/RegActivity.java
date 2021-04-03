@@ -124,6 +124,7 @@ public class RegActivity extends AppCompatActivity {
 
                             if(baNo.getText().toString().trim().equals(dataSnapshot1.getKey().toString().trim()))
                             {
+                                flag=true;
 
                                 if(dataSnapshot1.child("accountCreated").getValue().toString().equals("false"))
                                 {
@@ -175,7 +176,7 @@ public class RegActivity extends AppCompatActivity {
                                     builder.setCancelable(true);
                                     builder.setIcon(R.drawable.ic_baseline_error_outline_24);
                                     builder.setTitle("Registration Error");
-                                    builder.setMessage("An account with this ba number already exists.");
+                                    builder.setMessage("An account with this BA number already exists.");
                                     builder.setInverseBackgroundForced(true);
                                     builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
 
@@ -186,11 +187,35 @@ public class RegActivity extends AppCompatActivity {
                                     });
 
                                     AlertDialog alert=builder.create();
-                                    alert.show();
+                                    if(hasWindowFocus())
+                                    {
+                                        alert.show();
+                                    }
+
 
                                 }
                                 break;
                             }
+                        }
+                        if(!flag)
+                        {
+                            progressDialog.dismiss();
+                            AlertDialog.Builder builder=new AlertDialog.Builder(RegActivity.this);
+                            builder.setCancelable(true);
+                            builder.setIcon(R.drawable.ic_baseline_error_outline_24);
+                            builder.setTitle("Validation Error");
+                            builder.setMessage("Couldn't find the BA number you entered.");
+                            builder.setInverseBackgroundForced(true);
+                            builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            AlertDialog alert=builder.create();
+                            alert.show();
                         }
                     }
                     @Override
