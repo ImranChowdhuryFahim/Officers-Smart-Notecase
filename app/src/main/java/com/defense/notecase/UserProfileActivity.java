@@ -123,7 +123,9 @@ public class UserProfileActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserProfileActivity.this,ProfileEditActivity.class));
+                Intent intent = new Intent(UserProfileActivity.this,AuthenticationActivity.class);
+                intent.putExtra("destination","editProfile");
+                startActivity(intent);
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
             }
         });
