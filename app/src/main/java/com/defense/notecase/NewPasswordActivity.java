@@ -51,9 +51,9 @@ public class NewPasswordActivity extends AppCompatActivity {
 
 
 
-                                        Log.d("fb", "onDataChange: "+email);
-                                        Log.d("fb", "onDataChange: "+phoneNumber);
-                                        Log.d("fb", "onDataChange: "+baNumber);
+//                                        Log.d("fb", "onDataChange: "+email);
+//                                        Log.d("fb", "onDataChange: "+phoneNumber);
+//                                        Log.d("fb", "onDataChange: "+baNumber);
         confirm = findViewById(R.id.confirm);
 
         FirebaseMessaging.getInstance().getToken()
@@ -72,6 +72,7 @@ public class NewPasswordActivity extends AppCompatActivity {
                 if (checkConnectivity()){
                 } else {
                     nointernetp();
+                    return;
                 }
                 if(!validatePass() | !validateConfirmPass())
                 {

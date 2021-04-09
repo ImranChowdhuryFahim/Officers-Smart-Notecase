@@ -272,7 +272,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/guideline80"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></EditText>
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:nextFocusDown="@id/submit"></EditText>
 
     <Button
         android:id="@+id/submit"

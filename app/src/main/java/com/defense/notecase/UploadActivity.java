@@ -11,10 +11,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class UploadActivity extends AppCompatActivity {
     private ImageView avatar,directory,helpline,notification;
+    private Button imageUpload,pdfUpload;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +26,33 @@ public class UploadActivity extends AppCompatActivity {
         directory = findViewById(R.id.directory);
         helpline = findViewById(R.id.helpline);
         notification = findViewById(R.id.notification);
+        imageUpload = findViewById(R.id.imageUpload);
+        pdfUpload = findViewById(R.id.pdfUpload);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(UploadActivity.this,UserProfileActivity.class));
                 finish();
                 overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
+            }
+        });
+
+        imageUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UploadActivity.this,AuthenticationActivity.class);
+                intent.putExtra("destination","image");
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+            }
+        });
+        pdfUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UploadActivity.this,AuthenticationActivity.class);
+                intent.putExtra("destination","pdf");
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
             }
         });
         directory.setOnClickListener(new View.OnClickListener() {

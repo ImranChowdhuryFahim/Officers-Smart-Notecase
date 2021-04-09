@@ -9,12 +9,12 @@
 
 
     <Button
-        android:id="@+id/imageUpload"
+        android:id="@+id/selectFile"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@drawable/btnbackground"
         android:fontFamily="@font/segoeuib"
-        android:text="image"
+        android:text="select file"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@id/guideline8"
@@ -23,12 +23,12 @@
         app:layout_constraintBottom_toTopOf="@id/guideline41" />
 
     <Button
-        android:id="@+id/pdfUpload"
+        android:id="@+id/uploadFile"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@drawable/btnbackground"
         android:fontFamily="@font/segoeuib"
-        android:text="pdf"
+        android:text="upload"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@id/guideline8"
@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/guideline43" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/actionBar"
         android:layout_width="0dp"
         android:layout_height="93dp"
         android:background="@color/tb"
@@ -56,83 +56,15 @@
 
 
     <ImageView
-        android:id="@+id/helpline"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="#000000"
-        android:padding="1dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@id/notification"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/scan_active"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/helplinesmall" />
-
-    <ImageView
-        android:id="@+id/notification"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="@drawable/shaperightcorner"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/helpline"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/notificationsmall" />
-
-
-    <ImageView
-        android:id="@+id/directory"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="@drawable/shapeleftcorner"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@+id/avataru"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:id="@+id/back2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/foldersmall" />
-
-    <ImageView
-        android:id="@+id/avataru"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="#000000"
-        android:padding="1dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@+id/scan_active"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/directory"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/avatarsmall" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@drawable/btnbackground"
-        android:fontFamily="@font/segoeuib"
-        android:text="scan"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="@id/guideline8"
-        app:layout_constraintStart_toStartOf="@id/guideline7"
-        app:layout_constraintTop_toBottomOf="@id/guideline38"
-        app:layout_constraintBottom_toTopOf="@id/guideline39"/>
-
-    <ImageView
-        android:id="@+id/scan_active"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="@drawable/shapesquare"
-        android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@+id/helpline"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/avataru"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/scansmall" />
+        app:layout_constraintTop_toBottomOf="@id/guideline14"
+        app:srcCompat="@drawable/arrow" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -163,19 +95,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".185" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".845" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".94" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline38"
@@ -189,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".385" />
+        app:layout_constraintGuide_percent=".42" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline40"
@@ -218,6 +137,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".66" />
+
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/segoeuib"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline39"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

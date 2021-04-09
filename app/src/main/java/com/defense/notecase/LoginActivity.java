@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (checkConnectivity()){
                 } else {
                     nointernetp();
+                    return;
                 }
                 if(!validateBaNumber() | !validatePass())
                 {
