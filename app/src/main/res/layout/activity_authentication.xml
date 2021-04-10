@@ -28,44 +28,6 @@
 
 
     <ImageView
-        android:id="@+id/scan"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="#000000"
-        android:padding="1dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@id/helpline"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/avataru"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/scansmall" />
-
-    <ImageView
-        android:id="@+id/helpline"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="#000000"
-        android:padding="1dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@id/notification"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/scan"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/helplinesmall" />
-
-    <ImageView
-        android:id="@+id/notification"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="@drawable/shaperightcorner"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/helpline"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/notificationsmall" />
-
-    <ImageView
         android:id="@+id/imageView10"
         android:layout_width="0dp"
         android:layout_height="120dp"
@@ -75,32 +37,6 @@
         app:layout_constraintTop_toBottomOf="@id/guideline72"
         app:srcCompat="@drawable/avatar" />
 
-
-    <ImageView
-        android:id="@+id/directory"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="@drawable/shapeleftcorner"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@+id/avataru"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/foldersmall" />
-
-    <ImageView
-        android:id="@+id/avataru"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
-        android:background="@drawable/shapesquare"
-        android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline13"
-        app:layout_constraintEnd_toStartOf="@+id/scan"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/directory"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:srcCompat="@drawable/avatarsmallround" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14"
@@ -231,7 +167,7 @@
         app:layout_constraintGuide_percent=".77" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello Usabbir!!"
@@ -281,17 +217,18 @@
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintBottom_toTopOf="@+id/scan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
         android:background="@drawable/btnbackgroundsubmit"
-        android:textColor="@color/white"
-        android:textAllCaps="true"
-        android:textSize="40sp"
+        android:fontFamily="@font/segoeuib"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:fontFamily="@font/segoeuib"
-        />
+        android:text="Submit"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.666" />
 </androidx.constraintlayout.widget.ConstraintLayout>

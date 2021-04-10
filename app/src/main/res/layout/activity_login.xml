@@ -65,7 +65,7 @@
         tools:ignore="RtlCompat"></EditText>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ipftFile"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="11dp"

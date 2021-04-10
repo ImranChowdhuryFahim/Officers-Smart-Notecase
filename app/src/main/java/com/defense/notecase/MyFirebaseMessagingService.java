@@ -1,6 +1,8 @@
 package com.defense.notecase;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Vibrator;
 import android.util.Log;
 
@@ -38,12 +40,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void showNotification(String title, String body) {
 
+        Intent notifyIntent = new Intent(this, NotificationActivity.class);
+// Set the Activity to start in a new, empty task
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+// Create the PendingIntent
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder builder=new NotificationCompat
                 .Builder(this, PRIMARY_CHANNEL_ID)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
+                .setContentIntent(notifyPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
         NotificationManagerCompat managerCompat= NotificationManagerCompat.from(this);
         managerCompat.notify(NOTIFICATION_ID,builder.build());

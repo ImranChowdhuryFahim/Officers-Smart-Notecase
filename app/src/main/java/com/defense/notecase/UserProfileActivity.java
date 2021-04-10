@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,7 +40,6 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
         edit = findViewById(R.id.edit);
         directory = findViewById(R.id.directory);
         helpline = findViewById(R.id.helpline);
@@ -52,6 +52,7 @@ public class UserProfileActivity extends AppCompatActivity {
         DOB = findViewById(R.id.DOB);
         cellNo = findViewById(R.id.cellNo);
         unit = findViewById(R.id.unit);
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         sharedPref = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -72,7 +73,6 @@ public class UserProfileActivity extends AppCompatActivity {
                         name.setText(snapshot.child("rk").getValue().toString().trim()+" "+snapshot.child("name").getValue().toString().trim());
                         unit.setText(snapshot.child("unit").getValue().toString().trim());
                         DOB.setText(snapshot.child("dob").getValue().toString().trim());
-
                     }
 
                     @Override
@@ -95,6 +95,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 });
             }
         }
+
 
         directory.setOnClickListener(new View.OnClickListener() {
             @Override

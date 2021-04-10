@@ -7,6 +7,15 @@ public class FileModel {
     private String uploadDate;
     private String fileType;
 
+    public FileModel()
+    {
+        this.fileName = null;
+        this.fileLink = null;
+        this.uploadedBy = null;
+        this.uploadDate = null;
+        this.fileType = null;
+    }
+
     public FileModel(String fileName, String fileLink, String uploadedBy, String uploadDate, String fileType) {
         this.fileName = fileName;
         this.fileLink = fileLink;

@@ -1,30 +1,89 @@
 package com.defense.notecase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.defense.notecase.models.NotificationModel;
+import com.defense.notecase.viewHolder.NotificationViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static com.defense.notecase.LoginActivity.BA_NUMBER;
+import static com.defense.notecase.LoginActivity.SHARED_PREFS;
 
 public class NotificationActivity extends AppCompatActivity {
     private ImageView directory,scan,helpline,avatar;
+    private RecyclerView recyclerView;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private SharedPreferences sharedPref;
+    private String baNumber;
+    private LinearLayoutManager layoutManager;
+    private FirebaseRecyclerAdapter<NotificationModel, NotificationViewHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
+        recyclerView = findViewById(R.id.notificationList);
         directory = findViewById(R.id.directory);
         avatar = findViewById(R.id.avataru);
         scan = findViewById(R.id.scan_active);
         helpline = findViewById(R.id.helplineu);
+        sharedPref = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        baNumber = sharedPref.getString(BA_NUMBER, "123");
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("notifications");
+        databaseReference.keepSynced(true);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        FirebaseRecyclerOptions options=new FirebaseRecyclerOptions.Builder<NotificationModel>().setQuery(databaseReference.child(baNumber), NotificationModel.class).build();
+            adapter = new FirebaseRecyclerAdapter<NotificationModel, NotificationViewHolder>(options) {
+                @Override
+                protected void onBindViewHolder(@NonNull NotificationViewHolder holder, int position, @NonNull NotificationModel model) {
+
+                        holder.notificationBody.setText(model.getNotificationBody());
+
+
+                }
+
+                @NonNull
+                @Override
+                public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.notification_row,parent,false);
+                    NotificationViewHolder notificationViewHolder=new NotificationViewHolder(view);
+                    return notificationViewHolder;
+                }
+
+            };
+            adapter.startListening();
+            adapter.notifyDataSetChanged();
+            recyclerView.setAdapter(adapter);
 
         directory.setOnClickListener(new View.OnClickListener() {
             @Override

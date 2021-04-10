@@ -405,7 +405,7 @@ public class FileUploadActivity extends AppCompatActivity {
                             FileModel fileModel = new FileModel(extractedFilename,url,baNumber,dateStr,fileType);
                             if(iPftFlag==true)
                             {
-                                NotificationModel notificationModel = new NotificationModel(dateStr,"ipft",baNumber,url);
+                                NotificationModel notificationModel = new NotificationModel(dateStr,"ipft",baNumber,url,"IPFT Record Updated "+formattedDate);
                                 for(String ba:baNumbers)
                                 {
                                     databaseReference.child("ipft records").child(ba).child(name).setValue(fileModel);
@@ -413,7 +413,7 @@ public class FileUploadActivity extends AppCompatActivity {
                                 }
 
 
-                                Notifier(regTokens,"IPFT Record","IPFT Record Updated on "+formattedDate);
+                                Notifier(regTokens,"IPFT Record","IPFT Record Updated "+formattedDate);
 
 
 
@@ -421,14 +421,14 @@ public class FileUploadActivity extends AppCompatActivity {
                             }
                             else if(cOroFlag==true)
                             {
-                                NotificationModel notificationModel = new NotificationModel(dateStr,"ipft",baNumber,url);
+                                NotificationModel notificationModel = new NotificationModel(dateStr,"coro",baNumber,url,"Coro Record Updated "+formattedDate);
                                 for(String ba:baNumbers)
                                 {
                                     databaseReference.child("coro records").child(ba).child(name).setValue(fileModel);
                                     databaseReference.child("notifications").child(ba).child(name).setValue(notificationModel);
                                 }
 
-                                Notifier(regTokens,"CORO Record","CORO Record Updated on "+formattedDate);
+                                Notifier(regTokens,"CORO Record","CORO Record Updated "+formattedDate);
                             }
 
                             Handler handler = new Handler();

@@ -5,12 +5,22 @@ public class NotificationModel {
     private String recordType;
     private String uploadedBy;
     private String fileLink;
+    private String notificationBody;
 
-    public NotificationModel(String date, String recordType, String uploadedBy, String fileLink) {
+    public NotificationModel()
+    {
+        this.date = null;
+        this.recordType = null;
+        this.uploadedBy = null;
+        this.fileLink = null;
+        this.notificationBody = null;
+    }
+    public NotificationModel(String date, String recordType, String uploadedBy, String fileLink, String notificationBody) {
         this.date = date;
         this.recordType = recordType;
         this.uploadedBy = uploadedBy;
         this.fileLink = fileLink;
+        this.notificationBody = notificationBody;
     }
 
     public String getDate() {
@@ -43,5 +53,13 @@ public class NotificationModel {
 
     public void setFileLink(String fileLink) {
         this.fileLink = fileLink;
+    }
+
+    public String getNotificationBody() {
+        return notificationBody;
+    }
+
+    public void setNotificationBody(String notificationBody) {
+        this.notificationBody = notificationBody;
     }
 }
