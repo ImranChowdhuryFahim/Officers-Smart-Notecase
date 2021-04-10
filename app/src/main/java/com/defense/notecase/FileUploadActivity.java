@@ -63,6 +63,9 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -78,7 +81,7 @@ public class FileUploadActivity extends AppCompatActivity {
 
     private TextView actionBar,fileName;
     private Button selectFile,uploadFile;
-    private String extra,baNumber,extractedFilename;
+    private String extra,baNumber,extractedFilename,fileType;
     private ImageView back2;
     private Uri uri;
     private FirebaseDatabase firebaseDatabase;
@@ -127,6 +130,8 @@ public class FileUploadActivity extends AppCompatActivity {
         selectFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iPftFlag = false;
+                cOroFlag = false;
                 if(ContextCompat.checkSelfPermission(FileUploadActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
                 {
                     selectFile();
@@ -162,6 +167,8 @@ public class FileUploadActivity extends AppCompatActivity {
                 else {
                     upload();
                 }
+
+
             }
         });
 
@@ -200,7 +207,7 @@ public class FileUploadActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             String url =  uri.toString();
-                            FileModel fileModel = new FileModel(extractedFilename,url,baNumber,new Date().toString());
+                            FileModel fileModel = new FileModel(extractedFilename,url,baNumber,new Date().toString(),fileType);
                             databaseReference.child("uploaded files").child(baNumber).child(name).setValue(fileModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -268,6 +275,7 @@ public class FileUploadActivity extends AppCompatActivity {
             int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
             returnCursor.moveToFirst();
             extractedFilename = returnCursor.getString(nameIndex);
+            fileType = getContentResolver().getType(uri);
             fileName.setText(returnCursor.getString(nameIndex));
             if(extractedFilename.toLowerCase().contains("ipft"))
             {
@@ -384,17 +392,28 @@ public class FileUploadActivity extends AppCompatActivity {
                             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
                             progressDialog.show(); // Display Progress Dialog
                             progressDialog.setCancelable(false);
-                            FileModel fileModel = new FileModel(extractedFilename,url,baNumber,new Date().toString());
+                            Date d1 = new Date();
+                            String dateStr = d1.toString();
+                            DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+                            DateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+                            String formattedDate = null;
+                            try {
+                                formattedDate = formatter1.format(formatter.parse(dateStr));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            FileModel fileModel = new FileModel(extractedFilename,url,baNumber,dateStr,fileType);
                             if(iPftFlag==true)
                             {
-                                NotificationModel notificationModel = new NotificationModel(new Date().toString(),"ipft",baNumber,url);
+                                NotificationModel notificationModel = new NotificationModel(dateStr,"ipft",baNumber,url);
                                 for(String ba:baNumbers)
                                 {
                                     databaseReference.child("ipft records").child(ba).child(name).setValue(fileModel);
                                     databaseReference.child("notifications").child(ba).child(name).setValue(notificationModel);
                                 }
 
-                                Notifier(regTokens,"IPFT Record","IPFT Record Updated");
+
+                                Notifier(regTokens,"IPFT Record","IPFT Record Updated on "+formattedDate);
 
 
 
@@ -402,14 +421,14 @@ public class FileUploadActivity extends AppCompatActivity {
                             }
                             else if(cOroFlag==true)
                             {
-                                NotificationModel notificationModel = new NotificationModel(new Date().toString(),"ipft",baNumber,url);
+                                NotificationModel notificationModel = new NotificationModel(dateStr,"ipft",baNumber,url);
                                 for(String ba:baNumbers)
                                 {
                                     databaseReference.child("coro records").child(ba).child(name).setValue(fileModel);
                                     databaseReference.child("notifications").child(ba).child(name).setValue(notificationModel);
                                 }
 
-                                Notifier(regTokens,"CORO Record","CORO Record Updated");
+                                Notifier(regTokens,"CORO Record","CORO Record Updated on "+formattedDate);
                             }
 
                             Handler handler = new Handler();
@@ -419,7 +438,7 @@ public class FileUploadActivity extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     Toasty.success(FileUploadActivity.this,"File uploaded and circulated successfully",Toasty.LENGTH_SHORT).show();
                                 }
-                            }, 5000);
+                            }, 2000);
                         }
                     });
                 }

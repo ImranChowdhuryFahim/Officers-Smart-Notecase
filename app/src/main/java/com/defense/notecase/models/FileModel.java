@@ -5,29 +5,14 @@ public class FileModel {
     private String fileLink;
     private String uploadedBy;
     private String uploadDate;
+    private String fileType;
 
-    public String getUploadDate() {
-        return uploadDate;
-    }
-
-    public void setUploadDate(String uploadDate) {
-        this.uploadDate = uploadDate;
-    }
-
-    public FileModel(String fileName, String fileLink, String uploadedBy, String uploadDate) {
+    public FileModel(String fileName, String fileLink, String uploadedBy, String uploadDate, String fileType) {
         this.fileName = fileName;
         this.fileLink = fileLink;
         this.uploadedBy = uploadedBy;
         this.uploadDate = uploadDate;
-    }
-
-
-    public String getUploadedBy() {
-        return uploadedBy;
-    }
-
-    public void setUploadedBy(String uploadedBy) {
-        this.uploadedBy = uploadedBy;
+        this.fileType = fileType;
     }
 
     public String getFileName() {
@@ -44,5 +29,29 @@ public class FileModel {
 
     public void setFileLink(String fileLink) {
         this.fileLink = fileLink;
+    }
+
+    public String getUploadedBy() {
+        return uploadedBy;
+    }
+
+    public void setUploadedBy(String uploadedBy) {
+        this.uploadedBy = uploadedBy;
+    }
+
+    public String getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(String uploadDate) {
+        this.uploadDate = uploadDate;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 }
