@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String IS_LOGGED_IN = "isLoggedIn";
     public static final String BA_NUMBER = "baNumber";
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         // Get new FCM registration token
-                        String token = task.getResult();
+                       token = task.getResult();
 
                         Log.d("Token", token);
 //                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
@@ -112,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString(BA_NUMBER,baNo.getText().toString().trim());
                                     editor.apply();
                                     progressDialog.dismiss();
+                                    databaseReference.child(baNo.getText().toString().trim()).child("regToken").setValue(token);
                                     startActivity(new Intent(LoginActivity.this,DirectoryActivity.class));
                                     finish();
                                     overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
