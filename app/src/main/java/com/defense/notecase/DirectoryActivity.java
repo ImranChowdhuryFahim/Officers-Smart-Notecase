@@ -19,8 +19,8 @@ import static com.defense.notecase.LoginActivity.BA_NUMBER;
 import static com.defense.notecase.LoginActivity.SHARED_PREFS;
 
 public class DirectoryActivity extends AppCompatActivity {
-    private ImageView avatar,scan,helpline,notification,coroFile,uploadedFiles,ipftFile;
-    private TextView coro,ipft,upfiles;
+    private ImageView avatar,scan,helpline,notification,coroFile,uploadedFiles,ipftFile,payslipFile;
+    private TextView coro,ipft,upfiles,payslip;
     private SharedPreferences sharedPref;
     private String baNumber;
 
@@ -39,6 +39,8 @@ public class DirectoryActivity extends AppCompatActivity {
         coro = findViewById(R.id.coro);
         ipft = findViewById(R.id.ipft);
         upfiles = findViewById(R.id.upfile);
+        payslip = findViewById(R.id.payslip);
+        payslipFile = findViewById(R.id.payslipFiles);
 
         sharedPref = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         baNumber = sharedPref.getString(BA_NUMBER, "123");
@@ -105,6 +107,20 @@ public class DirectoryActivity extends AppCompatActivity {
                 intent.putExtra("filePath","uploaded files/"+baNumber);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+            }
+        });
+
+        payslip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DirectoryActivity.this,PaySlipFindActivity.class));
+            }
+        });
+
+        payslipFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DirectoryActivity.this,PaySlipFindActivity.class));
             }
         });
         avatar.setOnClickListener(new View.OnClickListener() {

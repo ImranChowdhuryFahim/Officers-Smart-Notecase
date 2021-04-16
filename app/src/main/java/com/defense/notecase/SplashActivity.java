@@ -11,8 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-
 import static com.defense.notecase.LoginActivity.IS_LOGGED_IN;
 import static com.defense.notecase.LoginActivity.SHARED_PREFS;
 
@@ -40,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
 
         if(isLoggedIn)
         {
-            intent = new Intent(SplashActivity.this,DirectoryActivity.class);
+            intent = new Intent(SplashActivity.this, DirectoryActivity.class);
         }
         else{
 

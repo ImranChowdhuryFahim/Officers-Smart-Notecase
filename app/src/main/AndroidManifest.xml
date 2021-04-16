@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".OfflineFirebase"
@@ -16,10 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OfficersSmartNotecase">
-        <activity android:name=".FileLoadActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".FileShowActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".PaySlipFindActivity"></activity>
+        <activity android:name=".PdfShowActivity" />
+        <activity android:name=".PayslipListShowActivity" />
+        <activity
+            android:name=".FileLoadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FileShowActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FileUploadActivity"
             android:screenOrientation="portrait" />

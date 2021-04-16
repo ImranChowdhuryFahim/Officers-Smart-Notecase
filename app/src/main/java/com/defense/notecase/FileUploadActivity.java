@@ -132,12 +132,12 @@ public class FileUploadActivity extends AppCompatActivity {
             public void onClick(View v) {
                 iPftFlag = false;
                 cOroFlag = false;
-                if(ContextCompat.checkSelfPermission(FileUploadActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                if(ContextCompat.checkSelfPermission(FileUploadActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED  && ContextCompat.checkSelfPermission(FileUploadActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
                 {
                     selectFile();
                 }
                 else {
-                    ActivityCompat.requestPermissions(FileUploadActivity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},10);
+                    ActivityCompat.requestPermissions(FileUploadActivity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},10);
                 }
             }
         });
@@ -251,7 +251,7 @@ public class FileUploadActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if( requestCode == 10 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+        if( requestCode == 10 && grantResults[0]==PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED)
         {
             selectFile();
         }

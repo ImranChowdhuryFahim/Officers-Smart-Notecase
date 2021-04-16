@@ -14,9 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.defense.notecase.models.FileModel;
-import com.defense.notecase.models.NotificationModel;
 import com.defense.notecase.viewHolder.FileShowViewHolder;
-import com.defense.notecase.viewHolder.NotificationViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
