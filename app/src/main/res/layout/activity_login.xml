@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/new_bg_login"
     tools:context=".LoginActivity">
 
     <EditText
@@ -88,22 +88,20 @@
 
     <Button
         android:id="@+id/confirm"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginLeft="106dp"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
         android:background="@drawable/bt"
         android:fontFamily="@font/segoeuib"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        android:paddingRight="20dp"
         android:paddingLeft="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        android:paddingRight="20dp"
+        android:text="Lets go"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline33"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline32"
-        app:layout_constraintBottom_toTopOf="@id/guideline33" />
+        app:layout_constraintTop_toBottomOf="@id/guideline32" />
 
     <TextView
         android:id="@+id/textView2"
@@ -165,7 +163,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".72" />
+        app:layout_constraintGuide_percent=".75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -235,7 +233,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".65" />
+        app:layout_constraintGuide_percent=".66" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline34"

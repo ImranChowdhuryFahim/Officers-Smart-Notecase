@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/new_bg_login"
     tools:context=".UserProfileActivity">
 
     <TextView
@@ -161,7 +161,7 @@
         android:id="@+id/scan"
         android:layout_width="70dp"
         android:layout_height="68dp"
-        android:background="#000000"
+        android:background="@drawable/shapesquarewhite"
         android:padding="1dp"
         app:layout_constraintBottom_toTopOf="@id/guideline13"
         app:layout_constraintEnd_toStartOf="@id/helpline"

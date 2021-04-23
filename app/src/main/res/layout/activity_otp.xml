@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/new_bg_login"
     tools:context=".OtpActivity">
 
     <TextView
@@ -64,22 +64,20 @@
 
     <Button
         android:id="@+id/confirm"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
         android:background="@drawable/bt"
         android:fontFamily="@font/segoeuib"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Confirm"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="40sp"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintBottom_toTopOf="@id/guideline71"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline70"
-        app:layout_constraintBottom_toTopOf="@id/guideline71" />
+        app:layout_constraintTop_toBottomOf="@id/guideline70" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -119,18 +117,17 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/segoeuib"
         android:gravity="center_vertical"
         android:text="Check Your Mobile for OTP"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="22sp"
+        android:textAllCaps="true"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@id/guideline69"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline68"
         tools:ignore="RtlCompat" />
@@ -138,16 +135,17 @@
     <TextView
         android:id="@+id/countDown"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginLeft="90dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ret"
         android:fontFamily="@font/segoeuib"
         android:gravity="center_vertical"
         android:text="Expires in 0:59s"
         android:textColor="#FF0000"
         android:textSize="30sp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toTopOf="@id/guideline65"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline64" />
 
@@ -177,7 +175,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".29" />
+        app:layout_constraintGuide_percent=".32" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline66"
@@ -205,7 +203,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".4" />
+        app:layout_constraintGuide_percent=".43" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline70"

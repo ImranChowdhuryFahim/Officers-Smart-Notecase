@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/new_bg_login"
     tools:context=".UserProfileActivity">
 
 
@@ -175,8 +175,9 @@
         app:layout_constraintTop_toBottomOf="@id/guideline74"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="30sp"
+        android:textAllCaps="true"
         android:fontFamily="@font/segoeuib"
-        android:textColor="#603874"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -200,7 +201,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline78"
-        app:srcCompat="@drawable/qrscanner" />
+        app:srcCompat="@drawable/qr_scanner" />
 
     <EditText
         android:id="@+id/rfId"

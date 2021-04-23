@@ -11,9 +11,13 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import static com.defense.notecase.LoginActivity.BA_NUMBER;
 import static com.defense.notecase.LoginActivity.SHARED_PREFS;
@@ -44,6 +48,7 @@ public class DirectoryActivity extends AppCompatActivity {
 
         sharedPref = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         baNumber = sharedPref.getString(BA_NUMBER, "123");
+
 
         ipftFile.setOnClickListener(new View.OnClickListener() {
             @Override
