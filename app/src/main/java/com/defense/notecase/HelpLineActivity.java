@@ -9,12 +9,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class HelpLineActivity extends AppCompatActivity {
     private ImageView avatar,directory,scan,notification;
+    private Button emailHelp,phoneHelp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,29 @@ public class HelpLineActivity extends AppCompatActivity {
         directory = findViewById(R.id.directory);
         scan = findViewById(R.id.scan_active);
         notification = findViewById(R.id.notification);
+        emailHelp = findViewById(R.id.emailHelp);
+        phoneHelp = findViewById(R.id.phoneHelp);
+
+
+
+        phoneHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + "+8801883385213"));
+                startActivity(intent);
+            }
+        });
+
+        emailHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:defense.notecase@gmail.com"));
+                startActivity(intent);
+            }
+        });
+
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

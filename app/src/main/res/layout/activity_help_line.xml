@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/phoneHelp"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@drawable/btnbackground"
@@ -23,7 +23,7 @@
         app:layout_constraintBottom_toTopOf="@id/guideline25"/>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/emailHelp"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@drawable/btnbackground"

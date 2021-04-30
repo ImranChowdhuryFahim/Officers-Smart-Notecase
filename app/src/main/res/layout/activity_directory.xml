@@ -26,7 +26,7 @@
         android:layout_marginLeft="108dp"
 
         android:fontFamily="@font/segoeuib"
-        android:text="Uploaded Files"
+        android:text="Miscellaneous"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
         android:background="@color/tb"
         android:fontFamily="@font/segoeuib"
         android:gravity="center_vertical"
-        android:text="directory"
+        android:text="home"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/white"
