@@ -2,7 +2,6 @@ package com.defense.notecase;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -21,7 +20,6 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.OpenableColumns;
@@ -61,7 +59,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -85,13 +82,13 @@ public class FileUploadActivity extends AppCompatActivity {
     private ImageView back2;
     private Uri uri;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReferenceRead,databaseReference;
+    private DatabaseReference databaseReferenceRead,databaseReference,databaseReferenceCheck;
     private ArrayList<String> baNumbers,regTokens;
     private boolean iPftFlag,cOroFlag,isLoggedIn;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private SharedPreferences sharedPref;
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog,progressDialog1;
     private RequestQueue requestQueue;
 
     @Override
@@ -115,6 +112,7 @@ public class FileUploadActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         databaseReferenceRead = firebaseDatabase.getReference("users");
         databaseReference = firebaseDatabase.getReference("");
+        databaseReferenceCheck = firebaseDatabase.getReference("profiles");
 
         extra = getIntent().getStringExtra("type");
 
@@ -162,7 +160,66 @@ public class FileUploadActivity extends AppCompatActivity {
                 }
                 if(iPftFlag == true | cOroFlag== true)
                 {
-                    scanPdfndUpload();
+                    progressDialog1 = new ProgressDialog(FileUploadActivity.this);
+                    progressDialog1.setMessage("Please wait..."); // Setting Message
+                    progressDialog1.setTitle("Checking Permission"); // Setting Title
+                    progressDialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                    progressDialog1.show(); // Display Progress Dialog
+                    progressDialog1.setCancelable(false);
+                    databaseReferenceCheck.child(baNumber).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if(snapshot.hasChild("isAdmin")){
+                                String val = snapshot.child("isAdmin").getValue().toString().trim();
+                                if(val.equals("true"))
+                                {
+
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                            // yourMethod();
+                                            progressDialog1.dismiss();
+                                            Toasty.success(FileUploadActivity.this,"You are authorized",Toasty.LENGTH_SHORT).show();
+                                            scanPdfndUpload();
+                                        }
+                                    }, 2000);
+
+                                }
+                                else{
+
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                            // yourMethod();
+                                            progressDialog1.dismiss();
+                                            Toasty.warning(FileUploadActivity.this,"You are not authorized to upload this file",Toasty.LENGTH_SHORT).show();
+                                        }
+                                    }, 2000);
+
+                                }
+                            }
+                            else {
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        // yourMethod();
+                                        progressDialog1.dismiss();
+                                        Toasty.warning(FileUploadActivity.this,"You are not authorized to upload this file",Toasty.LENGTH_SHORT).show();
+                                    }
+                                }, 2000);
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
                 }
                 else {
                     upload();
@@ -184,6 +241,7 @@ public class FileUploadActivity extends AppCompatActivity {
         });
 
     }
+
 
 
 

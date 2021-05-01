@@ -211,6 +211,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:gravity="center_horizontal"
         android:nextFocusDown="@id/submit"></EditText>
 
